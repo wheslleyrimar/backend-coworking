@@ -1,11 +1,12 @@
 const express = require('express');
+require('dotenv').config()
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const routes = require('./routes');
 const app = express();
 
-mongoose.connect('mongodb+srv://wheslleyb:Ciencia@01@cluster0.ogyfz.mongodb.net/app?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -16,8 +17,6 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 3333;
-}
+let port = process.env.PORT || 3333;
+
 app.listen(port);
