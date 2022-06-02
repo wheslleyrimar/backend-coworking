@@ -14,7 +14,7 @@ mongoose.connect(process.env.DATABASEURL, {
 app.disable("x-powered-by");
 app.use(cors());
 app.use(express.json());
-app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
+app.use('https://api-blueworking.herokuapp.com/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 
 let port = process.env.PORT || 3333;
